@@ -22,7 +22,9 @@ class CounterHome extends StatelessWidget {
           if (state is UpdateState) {
             return _counter(context, state.counter);
           }
-          return Container();
+          return const Center(
+            child: Text("Its a problem"),
+          );
         },
       ),
     );
