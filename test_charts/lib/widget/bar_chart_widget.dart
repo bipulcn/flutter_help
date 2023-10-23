@@ -1,6 +1,6 @@
+import 'dart:math';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-
 import 'package:test_charts/data/price_point.dart';
 
 class BarChartWidget extends StatefulWidget {
@@ -24,15 +24,26 @@ class _BarChartWidgetState extends State<BarChartWidget> {
       aspectRatio: 2,
       child: BarChart(
         BarChartData(
+          // alignment: BarChartAlignment.spaceBetween,
           barGroups: _chartGroups(),
           borderData: FlBorderData(
               border: const Border(bottom: BorderSide(), left: BorderSide())),
-          gridData: FlGridData(show: false),
+          gridData: const FlGridData(
+              show: true,
+              drawVerticalLine: false,
+              horizontalInterval: 0.2,
+              verticalInterval: 0.1),
           titlesData: FlTitlesData(
             bottomTitles: AxisTitles(sideTitles: _bottomTitles),
-            leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-            topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-            rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+            leftTitles:
+                const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+            topTitles:
+                const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+            rightTitles:
+                const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+          ),
+          barTouchData: BarTouchData(
+            touchTooltipData: BarTouchTooltipData(tooltipBgColor: Colors.grey),
           ),
         ),
       ),
@@ -41,8 +52,19 @@ class _BarChartWidgetState extends State<BarChartWidget> {
 
   List<BarChartGroupData> _chartGroups() {
     return points
-        .map((point) => BarChartGroupData(
-            x: point.x.toInt(), barRods: [BarChartRodData(toY: point.y)]))
+        .map((point) => BarChartGroupData(x: point.x.toInt(), barRods: [
+              BarChartRodData(
+                toY: point.y,
+                color: Color((Random().nextDouble() * 0xFFFFFF).toInt())
+                    .withOpacity(1.0),
+                // borderSide: const BorderSide(color: Colors.grey),
+                backDrawRodData: BackgroundBarChartRodData(
+                  show: true,
+                  toY: 1.0,
+                  color: const Color.fromARGB(48, 158, 158, 158),
+                ),
+              )
+            ]))
         .toList();
   }
 
@@ -71,7 +93,10 @@ class _BarChartWidgetState extends State<BarChartWidget> {
               break;
           }
 
-          return Text(text);
+          return Text(
+            text,
+            style: const TextStyle(fontSize: 16, color: Colors.blue),
+          );
         },
       );
 }

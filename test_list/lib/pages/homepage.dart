@@ -15,26 +15,33 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
-  ];
+  // static const List<Widget> _widgetOptions = <Widget>[
+  //   Text(
+  //     'Index 0: Home',
+  //     style: optionStyle,
+  //   ),
+  //   Text(
+  //     'Index 1: Business',
+  //     style: optionStyle,
+  //   ),
+  //   Text(
+  //     'Index 2: School',
+  //     style: optionStyle,
+  //   ),
+  // ];
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
+
+  List<BtmTab> object = [
+    BtmTab(name: "Home", icon: Icons.home),
+    BtmTab(name: "Profile", icon: Icons.person),
+    BtmTab(name: "Settings", icon: Icons.settings)
+  ];
+  List<Widget> widgetOptions = <Widget>[ListOne(), ListTwo(), ListThree()];
 
   @override
   Widget build(BuildContext context) {
@@ -45,21 +52,24 @@ class _HomePageState extends State<HomePage> {
             style: const TextStyle(color: Colors.white),
           ),
           backgroundColor: Colors.deepPurple),
-      body: <Widget>[ListOne(), ListTwo(), ListThree()][_selectedIndex],
+      body: widgetOptions[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.settings), label: 'Settings'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-        ],
+        items: object
+            .map<BottomNavigationBarItem>((e) => BottomNavigationBarItem(
+                  icon: Icon(e.icon),
+                  label: e.name,
+                ))
+            .toList(),
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
         onTap: _onItemTapped,
       ),
     );
   }
+}
+
+class BtmTab {
+  final String name;
+  final IconData icon;
+  BtmTab({required this.name, required this.icon});
 }

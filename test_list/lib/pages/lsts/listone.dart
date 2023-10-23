@@ -15,8 +15,12 @@ class _ListOneState extends State<ListOne> {
   ];
   int selectedIndex = 0;
 
-  final List<int> colorCodes = <int>[600, 500, 100];
-  final List<Color> color = <Color>[Colors.white, Colors.white, Colors.black54];
+  final List<int> colorCodes = <int>[300, 200, 100];
+  final List<Color> color = <Color>[
+    Colors.black54,
+    Colors.black54,
+    Colors.black54
+  ];
   @override
   Widget build(BuildContext context) {
     return Center(
