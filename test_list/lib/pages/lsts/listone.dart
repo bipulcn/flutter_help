@@ -17,7 +17,7 @@ class _ListOneState extends State<ListOne> {
 
   final List<int> colorCodes = <int>[300, 200, 100];
   final List<Color> color = <Color>[
-    Colors.black54,
+    Colors.black87,
     Colors.black54,
     Colors.black54
   ];
@@ -29,13 +29,22 @@ class _ListOneState extends State<ListOne> {
             itemCount: categories.length,
             itemBuilder: (BuildContext context, int index) {
               return Container(
-                height: 50,
                 color: Colors.amber[colorCodes[index]],
-                child: Center(
-                    child: Text(
-                  categories[index].name,
-                  style: TextStyle(color: color[index], fontSize: 24),
-                )),
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Column(
+                    children: [
+                      Text(
+                        categories[index].name,
+                        style: TextStyle(color: color[index], fontSize: 24),
+                      ),
+                      const Text(
+                        "Hello world",
+                        style: TextStyle(fontSize: 20, color: Colors.black38),
+                      ),
+                    ],
+                  ),
+                ),
               );
             }));
   }
