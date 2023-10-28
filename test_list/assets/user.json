@@ -1,0 +1,19 @@
+{
+  "items": [
+    {
+      "id": "p1",
+      "name": "Item 1",
+      "email": "item1@gmail.com"
+    },
+    {
+      "id": "p2",
+      "name": "Item 2",
+      "email": "item2@gmail.com"
+    },
+    {
+      "id": "p3",
+      "name": "Item 3",
+      "email": "item3@gmail.com"
+    }
+  ]
+}
