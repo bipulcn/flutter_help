@@ -33,7 +33,6 @@ class _ListThreeState extends State<ListThree> {
     final data = await json.decode(response);
     setState(() {
       userList = data["items"];
-      print("..number of items ${userList.length}");
       Map<String, dynamic> obj = new Map<String, dynamic>();
       obj['id'] = "p4";
       obj['name'] = "bipul";

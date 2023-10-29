@@ -71,7 +71,7 @@ class _ListTwoState extends State<ListTwo> {
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: Text("OK"))
+                        child: const Text("OK"))
                   ],
                 );
               },
