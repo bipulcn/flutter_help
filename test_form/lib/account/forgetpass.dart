@@ -36,6 +36,26 @@ class _ForgetPassState extends State<ForgetPass> {
                 child: const Text("Request OTP"),
               ),
             ),
+            Divider(),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 16),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/');
+                  },
+                  child: const Text("Login"),
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/account');
+                    },
+                    child: const Text("Create account")),
+              ],
+            ),
           ],
         ),
       ),

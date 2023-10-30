@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:json_annotation/json_annotation.dart';
-import 'package:test_list/data/user.dart';
 
 class ListThree extends StatefulWidget {
   const ListThree({super.key});
@@ -91,7 +89,6 @@ class _ListThreeState extends State<ListThree> {
     const _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz';
     String str =
         List.generate(8, (index) => _chars[r.nextInt(_chars.length)]).join();
-    print(str);
     Map<String, dynamic> obj = new Map<String, dynamic>();
     obj['id'] = "p4";
     obj['name'] = str;

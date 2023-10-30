@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_form/comp/testtone.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -12,8 +13,10 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
             const Text(
               "Login",
               style: TextStyle(fontSize: 24),
@@ -37,26 +40,41 @@ class _LoginState extends State<Login> {
                 child: const Text("Login"),
               ),
             ),
+            Divider(),
             const SizedBox(
-              height: 130,
+              height: 30,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/forgets');
-                  },
-                  child: const Text("Recover Password"),
-                ),
-                ElevatedButton(
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ListView(
+                shrinkWrap: true,
+                padding: const EdgeInsets.all(8),
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/forgets');
+                    },
+                    child: const Text("Recover Password"),
+                  ),
+                  ElevatedButton(
                     onPressed: () {
                       Navigator.pushNamed(context, '/account');
                     },
-                    child: const Text("Create account")),
-              ],
+                    child: const Text("Create account"),
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        TestTone.instance.checkValue();
+                      },
+                      child: const Text("Test Me")),
+                ],
+              ),
             ),
-          ])),
+          ],
+        ),
+      ),
     );
   }
 }
