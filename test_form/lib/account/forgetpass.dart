@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_form/comp/styles.dart';
 
 class ForgetPass extends StatefulWidget {
   const ForgetPass({super.key});
@@ -11,21 +12,26 @@ class _ForgetPassState extends State<ForgetPass> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: const Text(
+          "Forget Password",
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              "Login",
-              style: TextStyle(fontSize: 24),
-            ),
             TextFormField(
-              decoration: const InputDecoration(labelText: "Username"),
+              decoration: textDecor("Username", "Username"),
               validator: (value) => value!.isEmpty ? 'Enter username' : null,
             ),
+            const SizedBox(height: 30),
             TextFormField(
-              decoration: const InputDecoration(labelText: "Phone Number"),
+              decoration: textDecor("Phone Number", "Phone Number"),
               validator: (value) =>
                   value!.isEmpty ? 'Enter Valid Phone number' : null,
             ),
@@ -36,7 +42,7 @@ class _ForgetPassState extends State<ForgetPass> {
                 child: const Text("Request OTP"),
               ),
             ),
-            Divider(),
+            const Divider(),
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 16),
             ),
@@ -47,13 +53,18 @@ class _ForgetPassState extends State<ForgetPass> {
                   onPressed: () {
                     Navigator.pushNamed(context, '/');
                   },
-                  child: const Text("Login"),
+                  child: const Row(
+                    children: [Text("Login  "), Icon(Icons.login)],
+                  ),
                 ),
+                const SizedBox(width: 10),
                 ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/account');
-                    },
-                    child: const Text("Create account")),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/account');
+                  },
+                  child: const Row(
+                      children: [Text("Create  "), Icon(Icons.person_add)]),
+                ),
               ],
             ),
           ],
