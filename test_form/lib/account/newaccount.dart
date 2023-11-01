@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:test_form/comp/ksrl.dart';
 import 'package:test_form/comp/styles.dart';
-import 'package:test_form/comp/testtone.dart';
 
 class NewAccount extends StatefulWidget {
   const NewAccount({super.key});
@@ -9,19 +9,23 @@ class NewAccount extends StatefulWidget {
   State<NewAccount> createState() => _NewAccountState();
 }
 
+// enum Gender { male, female, other }
+
 class _NewAccountState extends State<NewAccount> {
-  DateTime selectedDate = DateTime.now();
+  DateTime dobirth = DateTime.now();
+  final _nameCon = TextEditingController();
+  String _gender = 'M';
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
         context: context,
-        initialDate: selectedDate,
+        initialDate: dobirth,
         firstDate: DateTime(1900, 1),
         lastDate: DateTime(2025));
-    if (picked != null && picked != selectedDate) {
+    if (picked != null && picked != dobirth) {
       setState(() {
-        selectedDate = picked;
+        dobirth = picked;
       });
     }
   }
@@ -29,9 +33,9 @@ class _NewAccountState extends State<NewAccount> {
   void validateAndSave() {
     final FormState form = _formKey.currentState!;
     if (form.validate()) {
-      print('Form is valid');
+      debugPrint('Form is valid');
     } else {
-      print('Form is invalid');
+      debugPrint('Form is invalid');
     }
   }
 
@@ -57,10 +61,48 @@ class _NewAccountState extends State<NewAccount> {
             children: [
               const SizedBox(height: 50),
               TextFormField(
+                controller: _nameCon,
                 decoration:
                     textDecor("Full Name", "Full Name as shown in offical id"),
                 validator: (value) => value!.isEmpty ? 'Enter Full name' : null,
               ),
+              const SizedBox(height: 10),
+              Row(children: [
+                // const Text("Gender"),
+                const Icon(Icons.person_2_outlined),
+                Expanded(
+                  flex: 4,
+                  child: ListTile(
+                    title: const Text("Male"),
+                    leading: Radio(
+                      activeColor: Colors.blue,
+                      value: 'M',
+                      groupValue: _gender,
+                      onChanged: (value) {
+                        setState(() {
+                          debugPrint(value.toString());
+                          _gender = value.toString();
+                        });
+                      },
+                    ),
+                  ),
+                ),
+                Expanded(
+                    flex: 5,
+                    child: ListTile(
+                      title: const Text("Female"),
+                      leading: Radio(
+                        value: "F",
+                        groupValue: _gender,
+                        onChanged: (value) {
+                          setState(() {
+                            debugPrint(value.toString());
+                            _gender = value.toString();
+                          });
+                        },
+                      ),
+                    ))
+              ]),
               const SizedBox(height: 10),
               TextFormField(
                 decoration: textDecor("Address", "District, Division"),
@@ -70,7 +112,7 @@ class _NewAccountState extends State<NewAccount> {
               const SizedBox(height: 10),
               TextFormField(
                   controller: TextEditingController(
-                      text: selectedDate.toLocal().toString().split(' ')[0]),
+                      text: dobirth.toLocal().toString().split(' ')[0]),
                   decoration: const InputDecoration(
                       labelText: "Date of birth",
                       border: OutlineInputBorder(),
@@ -84,10 +126,29 @@ class _NewAccountState extends State<NewAccount> {
                     _selectDate(context);
                   }),
               const SizedBox(height: 10),
-              TextFormField(
-                decoration: textDecor("User id", "It will be used for login"),
-                validator: (value) => value!.isEmpty ? 'Enter username' : null,
-              ),
+              Row(children: [
+                Expanded(
+                  child: TextFormField(
+                    decoration:
+                        textDecor("User id", "It will be used for login"),
+                    validator: (value) =>
+                        value!.isEmpty ? 'Enter username' : null,
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.blueGrey,
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  width: 50,
+                  child: IconButton(
+                      onPressed: () {},
+                      color: Colors.white,
+                      icon: const Icon(Icons.search)),
+                ),
+              ]),
+
               const SizedBox(height: 10),
               TextFormField(
                 decoration: textDecor("Phone Number (optional)",
@@ -123,7 +184,9 @@ class _NewAccountState extends State<NewAccount> {
                   const SizedBox(width: 20),
                   ElevatedButton(
                     onPressed: () {
-                      validateAndSave();
+                      dobHash(dobirth.toString(), _gender.toString());
+                      nameHash(_nameCon.text);
+                      // validateAndSave();
                       // TestTone.instance.checkMe();
                     },
                     child: const Row(

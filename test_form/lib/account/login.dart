@@ -66,11 +66,13 @@ class _LoginState extends State<Login> {
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
                   ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/forgets');
-                    },
-                    child: const Text("Recover Password"),
-                  ),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/forgets');
+                      },
+                      child: const Row(children: [
+                        Text("Recover Password  "),
+                        Icon(Icons.lock)
+                      ])),
                   const SizedBox(width: 10),
                   ElevatedButton(
                     onPressed: () {

@@ -39,7 +39,9 @@ class _ForgetPassState extends State<ForgetPass> {
               padding: const EdgeInsets.symmetric(vertical: 16),
               child: ElevatedButton(
                 onPressed: () {},
-                child: const Text("Request OTP"),
+                child: const Row(
+                  children: [Text("Request OTP"), Icon(Icons.send)],
+                ),
               ),
             ),
             const Divider(),
