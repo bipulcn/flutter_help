@@ -41,6 +41,26 @@ class _OneSubPageState extends State<OneSubPage> {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
+        Wrap(
+          children: [
+            Container(
+              height: 100,
+              width: MediaQuery.of(context).size.width / 2,
+              color: Colors.limeAccent,
+            ),
+            Container(
+              height: 100,
+              width: MediaQuery.of(context).size.width / 3,
+              color: Colors.redAccent,
+            ),
+            Expanded(
+              child: Container(
+                height: 100,
+                color: Colors.greenAccent,
+              ),
+            ),
+          ],
+        ),
         Expanded(
           child: Container(
             color: Colors.blueAccent,
