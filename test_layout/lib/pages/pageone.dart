@@ -6,24 +6,25 @@ class PageOne extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            backgroundColor: Colors.tealAccent,
-            title: const Text("Title"),
-            leading: IconButton(
-              icon: const Icon(Icons.menu),
+      appBar: AppBar(
+          backgroundColor: Colors.tealAccent,
+          title: const Text("Title"),
+          leading: IconButton(
+            icon: const Icon(Icons.menu),
+            onPressed: () {
+              Navigator.popAndPushNamed(context, "/pagetwo");
+            },
+          ),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.arrow_circle_right_outlined),
               onPressed: () {
-                Navigator.popAndPushNamed(context, "/pagetwo");
+                Navigator.popAndPushNamed(context, "/pagethree");
               },
-            ),
-            actions: [
-              IconButton(
-                icon: const Icon(Icons.arrow_circle_right_outlined),
-                onPressed: () {
-                  Navigator.popAndPushNamed(context, "/pagethree");
-                },
-              )
-            ]),
-        body: const OneSubPage());
+            )
+          ]),
+      body: const OneSubPage(),
+    );
   }
 }
 
@@ -45,6 +46,11 @@ class _OneSubPageState extends State<OneSubPage> {
           children: [
             Container(
               height: 100,
+              width: MediaQuery.of(context).size.width / 6,
+              color: Colors.blueAccent,
+            ),
+            Container(
+              height: 100,
               width: MediaQuery.of(context).size.width / 2,
               color: Colors.limeAccent,
             ),
@@ -53,10 +59,31 @@ class _OneSubPageState extends State<OneSubPage> {
               width: MediaQuery.of(context).size.width / 3,
               color: Colors.redAccent,
             ),
+            // Expanded(   // only works with Flex, column, row
+            //   child: Container(
+            //     height: 100,
+            //     color: Colors.greenAccent,
+            //   ),
+            // ),
+          ],
+        ),
+        Flex(
+          direction: Axis.horizontal,
+          children: [
+            Container(
+              height: 100,
+              width: MediaQuery.of(context).size.width / 2,
+              color: Colors.pinkAccent,
+            ),
+            Container(
+              height: 100,
+              width: MediaQuery.of(context).size.width / 3,
+              color: Colors.cyanAccent,
+            ),
             Expanded(
               child: Container(
                 height: 100,
-                color: Colors.greenAccent,
+                color: Colors.purple,
               ),
             ),
           ],
