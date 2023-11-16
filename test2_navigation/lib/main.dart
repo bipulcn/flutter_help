@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:test2_navigation/pgone.dart';
+import 'package:test2_navigation/pgthree.dart';
+import 'package:test2_navigation/pgtwo.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,8 +17,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       routes: {
         '/': (context) => const MyHomePage(title: 'Flutter Demo Home Page'),
-        '/second': (context) => SecondScreen(),
-        '/third': (context) => ThirdScreen()
+        '/first': (context) => const PageOne(),
+        '/second': (context) => const PageTwo(),
+        '/third': (context) => const PageThree(),
       },
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -58,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ElevatedButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => SecondScreen()));
+                    MaterialPageRoute(builder: (context) => const PageTwo()));
               },
               child: const Text("Go To Second page"),
             ),
@@ -67,7 +71,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.pushNamed(context, '/third');
               },
               child: const Text("Go To Third page"),
-            )
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.popAndPushNamed(context, "/first");
+                // Navigator.popUntil(context, ModalRoute.withName('/first'));
+
+                // Navigator.pushNamed(context, '/first');
+              },
+              child: const Text("Go To page one"),
+            ),
           ],
         ),
       ),
@@ -75,53 +88,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class SecondScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text(
-          'Second Screen',
-        ),
-      ),
-      body: Center(
-        child: Text.rich(
-          TextSpan(children: [
-            TextSpan(
-              text: "This is",
-              style: TextStyle(fontSize: 25),
-            ),
-            TextSpan(
-              text: "\nour",
-              style: TextStyle(fontSize: 35),
-            ),
-            TextSpan(
-              text: "\nsecond screen",
-              style: TextStyle(fontSize: 45),
-            ),
-          ], style: TextStyle(color: Colors.blue)),
-          textAlign: TextAlign.center,
-        ),
-      ),
-    );
-  }
-}
+// class SecondScreen extends StatelessWidget {
 
-class ThirdScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inverseSurface,
-        title: const Text('Third Screen'),
-      ),
-      body: Center(
-        child: Text(
-          "This is our third screen",
-          style: TextStyle(fontSize: 33),
-        ),
-      ),
-    );
-  }
-}
+// }
+
+// class ThirdScreen extends StatelessWidget {
+  
+// }

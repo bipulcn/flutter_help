@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_layout/comp/loaderControllers.dart';
 
 class PageOne extends StatelessWidget {
   const PageOne({super.key});
@@ -58,6 +59,7 @@ class _OneSubPageState extends State<OneSubPage> {
               height: 100,
               width: MediaQuery.of(context).size.width / 3,
               color: Colors.redAccent,
+              child: customLoaders(),
             ),
             // Expanded(   // only works with Flex, column, row
             //   child: Container(

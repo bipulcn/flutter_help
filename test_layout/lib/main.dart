@@ -27,6 +27,10 @@ class MyApp extends StatelessWidget {
     //   ),
     // );
     return MaterialApp(
+      // debugShowMaterialGrid: true,
+      // showSemanticsDebugger: true,
+      debugShowCheckedModeBanner: false,
+      // showPerformanceOverlay: true,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
