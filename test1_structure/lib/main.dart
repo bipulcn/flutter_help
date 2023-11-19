@@ -41,14 +41,14 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
 
-    DateTime _ctime = DateTime.now();
+    DateTime ctime = DateTime.now();
 
-    clock = '${_ctime.hour}:${_ctime.minute}:${_ctime.second}';
+    clock = '${ctime.hour}:${ctime.minute}:${ctime.second}';
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         // _counter++;
-        _ctime = DateTime.now();
-        clock = '${_ctime.hour}:${_ctime.minute}:${_ctime.second}';
+        ctime = DateTime.now();
+        clock = '${ctime.hour}:${ctime.minute}:${ctime.second}';
       });
     });
   }
@@ -57,12 +57,6 @@ class _MyHomePageState extends State<MyHomePage> {
   void dispose() {
     _timer?.cancel();
     super.dispose();
-  }
-
-  void _incrementCounter() {
-    setState(() {
-      // _counter++;
-    });
   }
 
   void _showDialog() {
@@ -97,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Text.rich(
               TextSpan(children: [
-                TextSpan(
+                const TextSpan(
                     text: "This is your Text\n",
                     style: TextStyle(fontSize: 18)),
                 TextSpan(
