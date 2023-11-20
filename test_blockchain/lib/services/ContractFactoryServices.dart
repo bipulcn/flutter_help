@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart';
 import 'package:test_blockchain/units/Constants.dart';
+import 'package:walletconnect_dart/walletconnect_dart.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:web_socket_channel/io.dart';
 
@@ -19,12 +20,38 @@ class ContractFactoryServices extends ChangeNotifier {
   EthereumAddress? _contractAddress;
   DeployedContract? _contract;
   List<dynamic> userName = [];
-  String oneName = '';
+  List<dynamic> oneName = [];
   bool unameloading = true;
 
   ContractFactoryServices() {
     _setUpNetwork();
   }
+
+  final connector = WalletConnect(
+    bridge: 'https://bridge.walletconnect.org',
+    clientMeta: const PeerMeta(
+      name: 'User Registration',
+      url: 'https://walletconnect.org',
+      description: 'WalletConnect.org',
+      icons: [
+        'https://gblobscdn.gitbook.com/spaces%2F-LJJeCjcLrr53DcT1Ml7%2Favatar.png?alt=media'
+      ],
+    ),
+  );
+
+  connectWallet() async {
+    if (!connector.connected) {
+      try {
+        final session = await connector.createSession(
+          chainId: constants.CHAIN_ID,
+        );
+        debugPrint(session.accounts.toString());
+      } catch (e) {
+        debugPrint(e.toString());
+      }
+    }
+  }
+
   _setUpNetwork() async {
     _cleint = Web3Client(
       constants.NETWORK_HTTPS_RPC,
@@ -66,10 +93,11 @@ class ContractFactoryServices extends ChangeNotifier {
   _getUserName() async {
     userName = await _cleint!.call(
         contract: _contract!,
-        function: _contract!.function("retrieve"),
-        params: []);
+        function: _contract!.function("viewUser"),
+        params: [new BigInt.from(1)]);
     if (userName[0].length > 0) {
-      oneName = userName[0];
+      List<dynamic> oneName = userName[0];
+      debugPrint(oneName.toString());
       unameloading = false;
     } else {
       unameloading = true;
