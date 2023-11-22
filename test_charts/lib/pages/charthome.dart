@@ -58,6 +58,24 @@ class _CharthomeState extends State<Charthome> {
               // ),
               const Padding(padding: EdgeInsets.all(60)),
               BarChartWidget(points: pricePoints),
+              const SizedBox(
+                height: 30,
+              ),
+              ColoredBox(
+                color: Colors.black38,
+                child: Transform(
+                  alignment: Alignment.topRight,
+                  transform: Matrix4.skewY(0.4)..rotateZ(-3.1458 / 12.0),
+                  child: Container(
+                    padding: const EdgeInsets.all(8.0),
+                    color: const Color(0xFFE8581C),
+                    child: const Text(
+                      'Apartment for rent!',
+                      style: TextStyle(color: Colors.white, fontSize: 20.0),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart';
 import 'package:test_blockchain/units/Constants.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import 'package:walletconnect_dart/walletconnect_dart.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:web_socket_channel/io.dart';
@@ -41,12 +42,12 @@ class ContractFactoryServices extends ChangeNotifier {
 
   connectWallet() async {
     if (!connector.connected) {
-      try {
-        final session = await connector.createSession(
-          chainId: constants.CHAIN_ID,
-        );
-        debugPrint(session.accounts.toString());
-      } catch (e) {
+      await connector.createSession(
+        onDisplayUri: (_uri) async {
+          await launchUrlString(_uri, mode: LaunchMode.externalApplication);
+        },
+      );
+      try {} catch (e) {
         debugPrint(e.toString());
       }
     }

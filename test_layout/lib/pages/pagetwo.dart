@@ -43,7 +43,7 @@ class _SubChildPageState extends State<SubChildPage> {
         Container(
           // it bounds the Listview to be in appropriate height
           height: 200,
-          margin: const EdgeInsets.symmetric(vertical: 20),
+          margin: const EdgeInsets.symmetric(vertical: 5),
           child: ListView(
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
@@ -74,10 +74,34 @@ class _SubChildPageState extends State<SubChildPage> {
         const Card(
           color: Colors.orange,
           elevation: 10,
-          child: Padding(padding: EdgeInsets.all(20), child: Text("data")),
+          child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              child: Text(
+                "data",
+                style: TextStyle(color: Colors.white),
+              )),
         ),
-        const Text("data")
+        createTable(),
       ],
     );
+  }
+
+  Widget createTable() {
+    TextStyle tst = const TextStyle(fontWeight: FontWeight.bold);
+
+    List<TableRow> rows = [];
+    rows.add(TableRow(children: [
+      Text("Number", style: tst, textAlign: TextAlign.center),
+      Text("Squared", style: tst, textAlign: TextAlign.center),
+      Text("Cubed", style: tst, textAlign: TextAlign.center)
+    ]));
+    for (int i = 0; i < 25; ++i) {
+      rows.add(TableRow(children: [
+        Text(i.toString(), textAlign: TextAlign.center),
+        Text((i * i).toString(), textAlign: TextAlign.center),
+        Text((i * i * i).toString(), textAlign: TextAlign.center),
+      ]));
+    }
+    return Expanded(child: Table(children: rows));
   }
 }

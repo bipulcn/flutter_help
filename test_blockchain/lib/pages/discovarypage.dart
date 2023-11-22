@@ -18,10 +18,15 @@ class _DiscovaryPageState extends State<DiscovaryPage> {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("${contractFactory.name}"),
+          Text(contractFactory.name),
           contractFactory.unameloading
-              ? CircularProgressIndicator()
-              : Text("${contractFactory.userName}")
+              ? const CircularProgressIndicator()
+              : Text("${contractFactory.userName}"),
+          ElevatedButton(
+              onPressed: () {
+                contractFactory.connectWallet();
+              },
+              child: const Text("Connect Wallet"))
         ],
       )),
     );
