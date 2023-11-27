@@ -52,7 +52,10 @@ class _BarChartWidgetState extends State<BarChartWidget> {
 
   List<BarChartGroupData> _chartGroups() {
     return points
-        .map((point) => BarChartGroupData(x: point.x.toInt(), barRods: [
+        .map(
+          (point) => BarChartGroupData(
+            x: point.x.toInt(),
+            barRods: [
               BarChartRodData(
                 toY: point.y,
                 color: Color((Random().nextDouble() * 0xFFFFFF).toInt())
@@ -63,8 +66,10 @@ class _BarChartWidgetState extends State<BarChartWidget> {
                   toY: 1.0,
                   color: const Color.fromARGB(48, 158, 158, 158),
                 ),
-              )
-            ]))
+              ),
+            ],
+          ),
+        )
         .toList();
   }
 

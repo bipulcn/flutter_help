@@ -8,9 +8,9 @@ class LineChartWidget extends StatelessWidget {
   LineChartWidget(this.points, {Key? key}) : super(key: key);
 
   final List<Color> gradientColors = [
-    Colors.cyan,
-    Colors.green,
-    Colors.red,
+    Colors.blueAccent,
+    Colors.tealAccent,
+    Colors.deepOrangeAccent,
   ];
 
   @override
