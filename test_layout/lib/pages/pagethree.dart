@@ -26,7 +26,7 @@ class _PageThreeState extends State<PageThree> {
           IconButton(
             icon: const Icon(Icons.arrow_forward),
             onPressed: () {
-              Navigator.popAndPushNamed(context, "/pagetwo");
+              Navigator.popAndPushNamed(context, "/pagefive");
             },
           )
         ],
@@ -38,10 +38,10 @@ class _PageThreeState extends State<PageThree> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            CustomPaint(
+            const CustomPaint(
               size: Size(200, 200),
               // painter: Sky(),
-              child: const Center(
+              child: Center(
                 child: Text(
                   'Once upon a \ntime...',
                   style: TextStyle(
@@ -52,12 +52,12 @@ class _PageThreeState extends State<PageThree> {
                 ),
               ),
             ),
-            Text("Hello world"),
+            const Text("Hello world"),
             ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).push(_createRoute());
                 },
-                child: Text('Go!'))
+                child: const Text('Go!'))
           ],
         ),
       ),

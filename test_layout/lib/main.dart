@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:test_layout/pages/pagefive.dart';
+import 'package:test_layout/pages/pagefour.dart';
 import 'package:test_layout/pages/pageone.dart';
 import 'package:test_layout/pages/pagethree.dart';
 import 'package:test_layout/pages/pagetwo.dart';
@@ -41,6 +43,8 @@ class MyApp extends StatelessWidget {
         '/pageone': (context) => const PageOne(),
         '/pagetwo': (context) => const PageTwo(),
         '/pagethree': (context) => const PageThree(),
+        '/pagefour': (context) => const PageFour(),
+        '/pagefive': (context) => const PageFive(),
       },
       initialRoute: '/pageone',
     );
