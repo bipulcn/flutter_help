@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart';
 import 'package:test_blockchain/units/Constants.dart';
-import 'package:url_launcher/url_launcher_string.dart';
-import 'package:walletconnect_dart/walletconnect_dart.dart';
+// import 'package:url_launcher/url_launcher_string.dart';
+// import 'package:walletconnect_dart/walletconnect_dart.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:web_socket_channel/io.dart';
 
@@ -28,30 +28,30 @@ class ContractFactoryServices extends ChangeNotifier {
     _setUpNetwork();
   }
 
-  final connector = WalletConnect(
-    bridge: 'https://bridge.walletconnect.org',
-    clientMeta: const PeerMeta(
-      name: 'User Registration',
-      url: 'https://walletconnect.org',
-      description: 'WalletConnect.org',
-      icons: [
-        'https://gblobscdn.gitbook.com/spaces%2F-LJJeCjcLrr53DcT1Ml7%2Favatar.png?alt=media'
-      ],
-    ),
-  );
+  // final connector = WalletConnect(
+  //   bridge: 'https://bridge.walletconnect.org',
+  //   clientMeta: const PeerMeta(
+  //     name: 'User Registration',
+  //     url: 'https://walletconnect.org',
+  //     description: 'WalletConnect.org',
+  //     icons: [
+  //       'https://gblobscdn.gitbook.com/spaces%2F-LJJeCjcLrr53DcT1Ml7%2Favatar.png?alt=media'
+  //     ],
+  //   ),
+  // );
 
-  connectWallet() async {
-    if (!connector.connected) {
-      await connector.createSession(
-        onDisplayUri: (_uri) async {
-          await launchUrlString(_uri, mode: LaunchMode.externalApplication);
-        },
-      );
-      try {} catch (e) {
-        debugPrint(e.toString());
-      }
-    }
-  }
+  // connectWallet() async {
+  //   if (!connector.connected) {
+  //     await connector.createSession(
+  //       onDisplayUri: (_uri) async {
+  //         await launchUrlString(_uri, mode: LaunchMode.externalApplication);
+  //       },
+  //     );
+  //     try {} catch (e) {
+  //       debugPrint(e.toString());
+  //     }
+  //   }
+  // }
 
   _setUpNetwork() async {
     _cleint = Web3Client(
@@ -92,10 +92,15 @@ class ContractFactoryServices extends ChangeNotifier {
   // 3- Fetch All Functions and data
   // GET STORE NAME FROM BLOCKChAIN
   _getUserName() async {
+    var data = await _cleint!.call(
+        contract: _contract!,
+        function: _contract!.function("userid"),
+        params: []);
+    debugPrint(data.toString());
     userName = await _cleint!.call(
         contract: _contract!,
         function: _contract!.function("viewUser"),
-        params: [new BigInt.from(1)]);
+        params: [BigInt.from(0)]);
     if (userName[0].length > 0) {
       List<dynamic> oneName = userName[0];
       debugPrint(oneName.toString());

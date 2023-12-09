@@ -24,7 +24,7 @@ class _DiscovaryPageState extends State<DiscovaryPage> {
               : Text("${contractFactory.userName}"),
           ElevatedButton(
               onPressed: () {
-                contractFactory.connectWallet();
+                // contractFactory.connectWallet();
               },
               child: const Text("Connect Wallet"))
         ],
