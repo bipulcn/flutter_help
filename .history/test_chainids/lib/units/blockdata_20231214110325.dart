@@ -143,7 +143,6 @@ class BlockData extends ChangeNotifier {
     Wallet wallet;
     var passwd = "esrd@labApp";
     var jsWal = prefs.get("wallet").toString();
-    debugPrint(jsWal);
     if (jsWal != "") {
       wallet = Wallet.fromJson(jsWal, passwd);
     } else {

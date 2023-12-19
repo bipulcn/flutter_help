@@ -72,19 +72,28 @@ class BlockData extends ChangeNotifier {
     } else {
       // unameloading = true;
     }
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String mnemonic = prefs.get("mnemonic").toString();
+    String privateKey = bip39.mnemonicToSeedHex(mnemonic);
+    prefs.setString("privateKey", privateKey);
+    debugPrint(privateKey);
+    var ekey = EthPrivateKey.fromHex(privateKey);
+    debugPrint(ekey.address.toString());
+
     notifyListeners();
   }
 
   Future<double> getBalace() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String key = prefs.get("privateKey").toString();
-    var cred = EthPrivateKey.fromHex(key);
+    var cred = EthPrivateKey.fromHex(
+        "0b00d7489d13534a5adc4e83b85a23a7fdb0a4dbc1feaea66ca19e717bd26aaa");
+    var keys =
+        EthereumAddress.fromHex("0x6ff37f60651a216f6E5EEb29425744a963B17248");
     debugPrint("From pri: ${cred.address}");
+    debugPrint("From pub: ${keys}");
     EtherAmount eamount = await _client!.getBalance(cred.address);
     return eamount.getValueInUnit(EtherUnit.ether);
   }
 
-/*
   Future<void> sendMoney() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String men = prefs.get("mnemonic").toString();
@@ -92,6 +101,7 @@ class BlockData extends ChangeNotifier {
     _privateKey = EthPrivateKey.fromHex(hex);
     // _privateKey = EthPrivateKey.fromHex(prefs.get("privteAdd").toString())
     // as EthPrivateKey;
+/*
     await _client!.sendTransaction(
       cred,
       Transaction(
@@ -101,6 +111,7 @@ class BlockData extends ChangeNotifier {
         value: EtherAmount.fromBigInt(EtherUnit.ether, BigInt.from(1)),
       ),
     );
+    */
 
     var cred = EthPrivateKey.fromHex(
         "0b00d7489d13534a5adc4e83b85a23a7fdb0a4dbc1feaea66ca19e717bd26aaa");
@@ -120,11 +131,11 @@ class BlockData extends ChangeNotifier {
     notifyListeners();
     return Future.value();
   }
-*/
+
   Future<void> saveUser(String name, int age) async {
     Wallet wallet = await creatAccount();
     var creds = wallet.privateKey;
-    var tx = await _client!.sendTransaction(
+    await _client!.sendTransaction(
         EthPrivateKey.fromHex(creds.address.toString()),
         Transaction.callContract(
           contract: _contract!,
@@ -133,7 +144,7 @@ class BlockData extends ChangeNotifier {
         ),
         fetchChainIdFromNetworkId: true,
         chainId: null);
-    debugPrint(tx.toString());
+
     notifyListeners();
     return Future.value();
   }
@@ -143,11 +154,10 @@ class BlockData extends ChangeNotifier {
     Wallet wallet;
     var passwd = "esrd@labApp";
     var jsWal = prefs.get("wallet").toString();
-    debugPrint(jsWal);
     if (jsWal != "") {
       wallet = Wallet.fromJson(jsWal, passwd);
     } else {
-      String mnemonic = await getMnemonic();
+      String mnemonic = await getMnemanic();
       String hex = bip39.mnemonicToSeedHex(mnemonic);
       EthPrivateKey priKey = EthPrivateKey.fromHex(hex);
       wallet = Wallet.createNew(priKey, passwd, Random.secure());
@@ -157,7 +167,7 @@ class BlockData extends ChangeNotifier {
     return wallet;
   }
 
-  Future<String> getMnemonic() async {
+  Future<String> getMnemanic() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String mnemonic = prefs.getString("mnemonic").toString();
     if (mnemonic == "") {
@@ -194,7 +204,6 @@ class BlockData extends ChangeNotifier {
   //   return extendedKey.publicKey().toString();
   // }
 
-/*
   void createWallet() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var mnemonic;
@@ -238,5 +247,4 @@ class BlockData extends ChangeNotifier {
     //   print(wallet);
     // }
   }
-  */
 }

@@ -96,8 +96,8 @@ class _WalletManState extends State<WalletMan> {
                 backgroundColor:
                     MaterialStateProperty.all(Colors.lightBlueAccent)),
             onPressed: () async {
-              // BlockData bdata = await BlockData();
-              // await bdata.sendMoney();
+              BlockData bdata = await BlockData();
+              await bdata.sendMoney();
             },
             child: const Text("Send Money"),
           ),

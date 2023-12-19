@@ -72,14 +72,24 @@ class BlockData extends ChangeNotifier {
     } else {
       // unameloading = true;
     }
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String mnemonic = prefs.get("mnemonic").toString();
+    String privateKey = bip39.mnemonicToSeedHex(mnemonic);
+    prefs.setString("privateKey", privateKey);
+    debugPrint(privateKey);
+    var ekey = EthPrivateKey.fromHex(privateKey);
+    debugPrint(ekey.address.toString());
+
     notifyListeners();
   }
 
   Future<double> getBalace() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String key = prefs.get("privateKey").toString();
-    var cred = EthPrivateKey.fromHex(key);
+    var cred = EthPrivateKey.fromHex(
+        "0b00d7489d13534a5adc4e83b85a23a7fdb0a4dbc1feaea66ca19e717bd26aaa");
+    var keys =
+        EthereumAddress.fromHex("0x6ff37f60651a216f6E5EEb29425744a963B17248");
     debugPrint("From pri: ${cred.address}");
+    debugPrint("From pub: ${keys}");
     EtherAmount eamount = await _client!.getBalance(cred.address);
     return eamount.getValueInUnit(EtherUnit.ether);
   }
@@ -143,7 +153,6 @@ class BlockData extends ChangeNotifier {
     Wallet wallet;
     var passwd = "esrd@labApp";
     var jsWal = prefs.get("wallet").toString();
-    debugPrint(jsWal);
     if (jsWal != "") {
       wallet = Wallet.fromJson(jsWal, passwd);
     } else {
