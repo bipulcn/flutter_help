@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:test_provider/firstpage.dart';
-import 'package:test_provider/myprovider.dart';
 
 void main() {
   runApp(MultiProvider(
       providers: [ChangeNotifierProvider(create: (_) => CounterProvider())],
       child: const MyApp()));
+}
+
+class CounterProvider extends ChangeNotifier {
+  CounterProvider();
+  var _count = 10;
+  int get count => _count;
+  void increment() {
+    _count++;
+    notifyListeners();
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -37,6 +45,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  // int _counter = 0;
+
+  // void _incrementCounter() {
+  //   setState(() {
+  //     _counter++;
+  //   });
+  // }
+
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<CounterProvider>(context);
@@ -56,10 +72,6 @@ class _MyHomePageState extends State<MyHomePage> {
               provider.count.toString(),
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            ChangeNotifierProvider<MyProvider>(
-              create: (_) => MyProvider(),
-              child: FirstPage(),
-            )
           ],
         ),
       ),
@@ -69,15 +81,5 @@ class _MyHomePageState extends State<MyHomePage> {
         child: const Icon(Icons.add),
       ),
     );
-  }
-}
-
-class CounterProvider extends ChangeNotifier {
-  CounterProvider();
-  var _count = 10;
-  int get count => _count;
-  void increment() {
-    _count++;
-    notifyListeners();
   }
 }

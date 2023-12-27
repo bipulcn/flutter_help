@@ -56,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
               provider.count.toString(),
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            ChangeNotifierProvider<MyProvider>(
+            Provider<MyProvider>(
               create: (_) => MyProvider(),
               child: FirstPage(),
             )

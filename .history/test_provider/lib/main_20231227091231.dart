@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:test_provider/firstpage.dart';
-import 'package:test_provider/myprovider.dart';
 
 void main() {
   runApp(MultiProvider(
@@ -56,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
               provider.count.toString(),
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            ChangeNotifierProvider<MyProvider>(
+            Provider<MyProvider>(
               create: (_) => MyProvider(),
               child: FirstPage(),
             )
@@ -69,6 +68,16 @@ class _MyHomePageState extends State<MyHomePage> {
         child: const Icon(Icons.add),
       ),
     );
+  }
+}
+
+class MyProvider extends ChangeNotifier {
+  MyProvider();
+  var _count = 0;
+  int get count => _count;
+  void increment() {
+    _count++;
+    notifyListeners();
   }
 }
 
