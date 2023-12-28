@@ -82,6 +82,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   var value2 = getRandomValues().listen((event) {
                     debugPrint(event.toString());
                   });
+                  // var value2 = getRandomValues().listen((event) {
+                  //   print("Value from stream $event");
+                  // });
                   // Stream stream = _streamController.stream;
                   // strimSubscription = stream.listen((event) {
                   //   _counter++;

@@ -51,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final StreamController<int> _streamController =
       StreamController<int>.broadcast();
-  double valueis = 0;
+  int valueis = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -76,17 +76,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.green)),
                 onPressed: () {
-                  var value1 = getRandomValues().listen((event) {
-                    debugPrint(event.toString());
+                  Stream stream = _streamController.stream;
+                  strimSubscription = stream.listen((event) {
+                    _counter++;
+                    setValues(_counter);
                   });
-                  var value2 = getRandomValues().listen((event) {
-                    debugPrint(event.toString());
-                  });
-                  // Stream stream = _streamController.stream;
-                  // strimSubscription = stream.listen((event) {
-                  //   _counter++;
-                  //   setValues(_counter);
-                  // });
                 },
                 child: const Text("subscribe")),
             MaterialButton(
@@ -126,12 +120,5 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Stream<double> getRandomValues() async* {
     var random = Random(2);
-
-    while (true) {
-      await Future.delayed(const Duration(seconds: 1));
-      double value = random.nextDouble();
-      setValues(value);
-      yield value;
-    }
   }
 }

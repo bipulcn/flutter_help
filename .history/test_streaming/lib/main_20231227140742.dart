@@ -77,11 +77,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     backgroundColor: MaterialStateProperty.all(Colors.green)),
                 onPressed: () {
                   var value1 = getRandomValues().listen((event) {
-                    debugPrint(event.toString());
+                    print("Value from stream $event");
                   });
-                  var value2 = getRandomValues().listen((event) {
-                    debugPrint(event.toString());
-                  });
+                  // var value2 = getRandomValues().listen((event) {
+                  //   print("Value from stream $event");
+                  // });
                   // Stream stream = _streamController.stream;
                   // strimSubscription = stream.listen((event) {
                   //   _counter++;
