@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BlBlocCounterPage extends StatelessWidget {
+  const BlBlocCounterPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     /*
     BlocProvider manage's bloc lifecycle,
      */
     return BlocProvider(
-      create: (BuildContext context) => BlBlocCounterBloc()..add(InitEvent()),
-      child: Builder(builder: (context) => _buildPage(context)),
+      create: (context) => BlBlocCounterBloc(),
+      child: _buildPage(context),
     );
   }
 
@@ -18,21 +20,21 @@ class BlBlocCounterPage extends StatelessWidget {
     final bloc = BlocProvider.of<BlBlocCounterBloc>(context);
 
     return Scaffold(
-      appBar: AppBar(title: Text('Bloc-Bloc Example')),
+      appBar: AppBar(title: const Text('Bloc-Bloc Example')),
       body: Center(
         //Section two
         child: BlocBuilder<BlBlocCounterBloc, BlBlocCounterState>(
           builder: (context, state) {
             return Text(
               'Pressed ${bloc.state.count} times',
-              style: TextStyle(fontSize: 30.0),
+              style: const TextStyle(fontSize: 30.0),
             );
           },
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => bloc.add(CounterIncrementEvent()),
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

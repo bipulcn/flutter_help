@@ -81,7 +81,7 @@ class _OneSubPageState extends State<OneSubPage> {
             // ),
           ],
         ),
-        Divider(),
+        const Divider(),
         Flex(
           direction: Axis.horizontal,
           children: [
@@ -103,7 +103,7 @@ class _OneSubPageState extends State<OneSubPage> {
             ),
           ],
         ),
-        Divider(),
+        const Divider(),
         Expanded(
           child: Container(
             color: Colors.blueAccent,

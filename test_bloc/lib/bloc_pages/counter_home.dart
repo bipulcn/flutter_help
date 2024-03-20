@@ -17,10 +17,10 @@ class CounterHome extends StatelessWidget {
       body: BlocBuilder<CounterBloc, CounterStates>(
         builder: (context, state) {
           if (state is InitialState) {
-            return _counter(context, 0);
+            return _counter(context);
           }
           if (state is UpdateState) {
-            return _counter(context, state.counter);
+            return _counter(context);
           }
           return const Center(
             child: Text("Its a problem"),
@@ -31,15 +31,20 @@ class CounterHome extends StatelessWidget {
   }
 }
 
-Widget _counter(BuildContext context, int counter) {
+Widget _counter(BuildContext context) {
   return Center(
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          counter.toString(),
+          context.watch<CounterBloc>().counter.toString(),
+          // counter.toString(),
           style: Theme.of(context).textTheme.headlineLarge,
         ),
+        const SizedBox(
+          width: 50,
+        ),
+        const SecondPage(),
         const SizedBox(
           height: 50,
         ),
@@ -82,4 +87,28 @@ Widget _counter(BuildContext context, int counter) {
       ],
     ),
   );
+}
+
+class SecondPage extends StatelessWidget {
+  const SecondPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 250,
+      height: 150,
+      margin: const EdgeInsets.all(30),
+      decoration: BoxDecoration(border: Border.all(color: Colors.cyan)),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text("This is second Class"),
+          Text(
+            "${context.watch<CounterBloc>().counter}",
+            style: const TextStyle(fontSize: 54),
+          )
+        ],
+      ),
+    );
+  }
 }

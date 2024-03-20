@@ -39,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  List<Widget> _pages = <Widget>[FirstPage(), SecondPage(), ThirdPages()];
+  final List<Widget> _pages = <Widget>[const FirstPage(), const SecondPage(), const ThirdPages()];
 
   void _incrementCounter() {
     setState(() {});

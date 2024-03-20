@@ -63,6 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
                 child: const Text("do")),
             FilledButton(
+                onHover: (value) => palySound(1),
                 onPressed: () async {
                   palySound(1);
                 },

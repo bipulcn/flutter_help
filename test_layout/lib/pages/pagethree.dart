@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:test_layout/pages/pagefour.dart';
@@ -32,7 +34,9 @@ class _PageThreeState extends State<PageThree> {
         ],
       ),
       body: Container(
-        color: Colors.black12,
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/img01.jpg"), fit: BoxFit.cover)),
         width: double.infinity,
         height: double.infinity,
         child: Column(
@@ -52,12 +56,33 @@ class _PageThreeState extends State<PageThree> {
                 ),
               ),
             ),
-            const Text("Hello world"),
             ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).push(_createRoute());
                 },
-                child: const Text('Go!'))
+                child: const Text('Go!')),
+            const SizedBox(
+              height: 100,
+            ),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                child: Container(
+                  height: 250,
+                  width: 350,
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: const Color.fromARGB(80, 255, 193, 7)),
+                  child: const Text(
+                    "hello world",
+                    style: TextStyle(fontSize: 24, color: Colors.white),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ),

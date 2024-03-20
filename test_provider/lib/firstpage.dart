@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:test_provider/main.dart';
 import 'package:test_provider/myprovider.dart';
-import 'package:test_provider/secondpage.dart';
 import 'package:test_provider/subpage.dart';
+import 'package:test_provider/thirdpage.dart';
 
 class FirstPage extends StatefulWidget {
   const FirstPage({super.key});
@@ -15,33 +15,33 @@ class FirstPage extends StatefulWidget {
 class _FirstPageState extends State<FirstPage> {
   @override
   Widget build(BuildContext context) {
-    final myprov = Provider.of<MyProvider>(context);
-    final preprov = Provider.of<CounterProvider>(context);
+    // final myprov = Provider.of<MyProvider>(context);
+    // final preprov = Provider.of<CounterProvider>(context);
     return Column(
       children: [
-        Text("Well done working ${myprov.count}"),
+        Text("Well done working ${context.watch<MyProvider>().count}"),
+        Text("Well done working ${context.watch<CounterProvider>().count}"),
         TextButton(
             onPressed: () {
-              myprov.increment();
+              context.read<MyProvider>().increment();
             },
-            child: const Text("Increment")),
+            child: const Text(
+              "+",
+              style: TextStyle(fontSize: 24),
+            )),
         TextButton(
             onPressed: () {
-              preprov.increment();
+              context.read<CounterProvider>().increment();
             },
             child: const Text("update parent")),
         FilledButton(
             onPressed: () {
               debugPrint("Not working");
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: ((context) => ChangeNotifierProvider(
-                          create: (context) => MyProvider(),
-                          child: const SecondPage()))));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: ((context) => const ThirdPage())));
             },
             child: const Text("Go To second Page")),
-        SubPage(),
+        const SubPage(),
       ],
     );
   }

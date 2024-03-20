@@ -7,7 +7,7 @@ class PieChartcus extends StatefulWidget {
   const PieChartcus({Key? key, required this.data}) : super(key: key);
 
   @override
-  State<PieChartcus> createState() => _PieChartcusState(data: this.data);
+  State<PieChartcus> createState() => _PieChartcusState(data: data);
 }
 
 class _PieChartcusState extends State<PieChartcus> {

@@ -31,7 +31,7 @@ class _ListThreeState extends State<ListThree> {
     final data = await json.decode(response);
     setState(() {
       userList = data["items"];
-      Map<String, dynamic> obj = new Map<String, dynamic>();
+      Map<String, dynamic> obj = <String, dynamic>{};
       obj['id'] = "p4";
       obj['name'] = "bipul";
       obj['email'] = "bipul@gmail.com";
@@ -86,13 +86,13 @@ class _ListThreeState extends State<ListThree> {
 
   void addRandom() {
     var r = Random();
-    const _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz';
+    const chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz';
     String str =
-        List.generate(8, (index) => _chars[r.nextInt(_chars.length)]).join();
-    Map<String, dynamic> obj = new Map<String, dynamic>();
+        List.generate(8, (index) => chars[r.nextInt(chars.length)]).join();
+    Map<String, dynamic> obj = <String, dynamic>{};
     obj['id'] = "p4";
     obj['name'] = str;
-    obj['email'] = str + "@gmail.com";
+    obj['email'] = "$str@gmail.com";
     setState(() {
       userList.add(obj);
     });

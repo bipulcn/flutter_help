@@ -26,7 +26,7 @@ class _CharthomeState extends State<Charthome> {
   DataColumn dColumn(text) => DataColumn(
         label: Text(
           text,
-          style: TextStyle(fontStyle: FontStyle.italic),
+          style: const TextStyle(fontStyle: FontStyle.italic),
         ),
       );
 

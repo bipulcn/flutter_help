@@ -133,10 +133,10 @@ class _HomePageState extends State<HomePage> {
                     print("${nameCon.text} \n${desiCon.text}");
                     // Navigator.of(context).pop();
                     perInfo obj =
-                        new perInfo(name: nameCon.text, posi: desiCon.text);
+                        perInfo(name: nameCon.text, posi: desiCon.text);
                     await prefs.setString("user", obj.name);
                   },
-                  child: Text("Save"))
+                  child: const Text("Save"))
             ],
           );
         });
@@ -145,7 +145,7 @@ class _HomePageState extends State<HomePage> {
 
 class _InheritedStateContainer extends InheritedWidget {
   final _HomePageState data;
-  _InheritedStateContainer({
+  const _InheritedStateContainer({
     Key? key,
     required this.data,
     required Widget child,

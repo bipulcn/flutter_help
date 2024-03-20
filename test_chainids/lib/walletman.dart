@@ -70,7 +70,7 @@ class _WalletManState extends State<WalletMan> {
                         MaterialStateProperty.all(Colors.lightBlueAccent)),
                 onPressed: () async {
                   debugPrintStack(maxFrames: 2, label: "helloworld");
-                  BlockData bdata = await BlockData();
+                  BlockData bdata = BlockData();
                   bdata.getUserName();
                 },
                 child: const Text("hello"),
@@ -83,7 +83,7 @@ class _WalletManState extends State<WalletMan> {
                     backgroundColor:
                         MaterialStateProperty.all(Colors.lightBlueAccent)),
                 onPressed: () async {
-                  BlockData bdata = await BlockData();
+                  BlockData bdata = BlockData();
                   double amt = await bdata.getBalace();
                   debugPrint(amt.toString());
                 },
@@ -115,18 +115,18 @@ class _WalletManState extends State<WalletMan> {
   void checkWalte() {}
 
   Widget createForm(BuildContext context) {
-    final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-    TextEditingController _nameCon = TextEditingController();
-    TextEditingController _ageCon = TextEditingController();
+    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+    TextEditingController nameCon = TextEditingController();
+    TextEditingController ageCon = TextEditingController();
     return Form(
-      key: _formKey,
+      key: formKey,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
             padding: const EdgeInsets.all(10),
             child: TextFormField(
-              controller: _nameCon,
+              controller: nameCon,
               decoration: const InputDecoration(
                   border: OutlineInputBorder(), labelText: 'Name'),
               validator: (String? value) {
@@ -140,7 +140,7 @@ class _WalletManState extends State<WalletMan> {
           Padding(
             padding: const EdgeInsets.all(10),
             child: TextFormField(
-              controller: _ageCon,
+              controller: ageCon,
               decoration: const InputDecoration(
                   border: OutlineInputBorder(), label: Text("Age")),
               validator: (String? value) {
@@ -160,13 +160,13 @@ class _WalletManState extends State<WalletMan> {
                   backgroundColor: Colors.blueAccent,
                   foregroundColor: Colors.white),
               onPressed: () async {
-                BlockData bdata = await BlockData();
-                bdata.saveUser(_nameCon.text, int.parse(_ageCon.text));
-                if (_formKey.currentState!.validate()) {
+                BlockData bdata = BlockData();
+                bdata.saveUser(nameCon.text, int.parse(ageCon.text));
+                if (formKey.currentState!.validate()) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Processing Data')),
                   );
-                  saveDataToWalet(_nameCon.text, int.parse(_ageCon.text));
+                  saveDataToWalet(nameCon.text, int.parse(ageCon.text));
                 }
               },
               child: const Icon(Icons.save))

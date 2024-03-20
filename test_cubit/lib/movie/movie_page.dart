@@ -37,6 +37,7 @@ class _MoviesPageState extends State<MoviesPage> {
                   leading: CircleAvatar(
                     backgroundImage: NetworkImage(movies[index].urlImage),
                   ),
+                  subtitle: Text(movies[index].votes),
                 ),
               ),
             );

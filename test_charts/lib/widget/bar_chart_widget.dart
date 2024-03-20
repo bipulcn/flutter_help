@@ -10,7 +10,7 @@ class BarChartWidget extends StatefulWidget {
 
   @override
   State<BarChartWidget> createState() =>
-      _BarChartWidgetState(points: this.points);
+      _BarChartWidgetState(points: points);
 }
 
 class _BarChartWidgetState extends State<BarChartWidget> {

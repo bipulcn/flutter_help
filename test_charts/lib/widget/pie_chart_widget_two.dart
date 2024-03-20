@@ -11,7 +11,7 @@ class PieChartWidgetTwo extends StatefulWidget {
 
   @override
   State<PieChartWidgetTwo> createState() =>
-      _PieChartWidgetTwoState(sectors: this.sectors);
+      _PieChartWidgetTwoState(sectors: sectors);
 }
 
 class _PieChartWidgetTwoState extends State<PieChartWidgetTwo> {
@@ -19,7 +19,7 @@ class _PieChartWidgetTwoState extends State<PieChartWidgetTwo> {
 
   _PieChartWidgetTwoState({required this.sectors});
   int touchedIndex = -1;
-  final _random = new Random();
+  final _random = Random();
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +80,7 @@ class _PieChartWidgetTwoState extends State<PieChartWidgetTwo> {
         const SizedBox(width: 10),
         Text(
           sector.title,
-          style: TextStyle(fontSize: 16),
+          style: const TextStyle(fontSize: 16),
         )
       ]);
       list.add(ind);

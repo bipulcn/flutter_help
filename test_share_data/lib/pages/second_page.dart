@@ -11,17 +11,17 @@ class SecondPage extends StatefulWidget {
 
 class _SecondPageState extends State<SecondPage> {
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-  Map<String, dynamic> _value = new Map<String, dynamic>();
+  Map<String, dynamic> _value = <String, dynamic>{};
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          _value.length > 0
+          _value.isNotEmpty
               ? Text(
                   "Pomodoro: ${_value['Pomodoro']}\nRest Time: ${_value['Rest_Time']}\nLong Rest Time: ${_value['Long_Rest_Time']}\nTerm of Resting Time: ${_value['Term_of_Resting_Time']}")
-              : Text("No Data"),
+              : const Text("No Data"),
           Divider(
             thickness: 4,
             color: Colors.blueAccent.shade100,
