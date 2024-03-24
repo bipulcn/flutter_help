@@ -27,7 +27,7 @@ class SimpCube extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Center(
-            child: Text("Welcome to simple cubit",
+            child: Text("Welcome to simple cubit Click to roll your dice",
                 style: TextStyle(fontSize: 24))),
         Center(
           child: Text(
@@ -35,11 +35,15 @@ class SimpCube extends StatelessWidget {
             style: const TextStyle(fontSize: 30),
           ),
         ),
-        ElevatedButton(
-            onPressed: () {
+        GestureDetector(
+            onTap: () {
               context.read<SimpleCube>().rollDice();
             },
-            child: const Text("Clicked"))
+            child: Container(
+                width: 250,
+                height: 100,
+                color: Colors.orange,
+                child: const Center(child: Text("Clicked"))))
       ],
     );
   }

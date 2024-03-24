@@ -49,38 +49,29 @@ class _ListThreeState extends State<ListThree> {
 
     // final data =
     //     context.inheritFromWidgetOfExactType(_InheritedStateContainer).asset;
-    return Container(
-      padding: const EdgeInsets.all(10),
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ListView.builder(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              itemCount: userList.length,
-              itemBuilder: (BuildContext context, int index) => ListTile(
-                leading: Text(userList[index]['id']),
-                title: Text(userList[index]['name']),
-                subtitle: Text(userList[index]['email'].toString()),
-              ),
-            ),
-            TextButton(
-                onPressed: () {
-                  addRandom();
-                },
-                child: const Text("Add")),
-            TextButton(
-                onPressed: () {
-                  for (int i = 0; i < 5; i++) {
-                    addRandom();
-                  }
-                  // print(user.name);
-                },
-                child: const Text("Json Create")),
-          ],
+    return Scaffold(
+      body: ListView.builder(
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
+        itemCount: userList.length,
+        itemBuilder: (BuildContext context, int index) => ListTile(
+          leading: Text(userList[index]['id']),
+          title: Text(userList[index]['name']),
+          subtitle: Text(userList[index]['email'].toString()),
         ),
       ),
+      floatingActionButton:
+          Column(mainAxisAlignment: MainAxisAlignment.end, children: [
+        FloatingActionButton(
+            onPressed: addRandom, child: const Icon(Icons.nat)),
+        const SizedBox(height: 10),
+        FloatingActionButton(
+          onPressed: () {
+            addRandom();
+          },
+          child: const Icon(Icons.add),
+        )
+      ]),
     );
   }
 

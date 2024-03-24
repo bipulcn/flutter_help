@@ -8,7 +8,7 @@ class SimpleCube extends Cubit<int?> {
   void rollDice() {
     int number;
     do {
-      number = Random().nextInt(6);
+      number = Random().nextInt(7);
     } while (number == 0);
     emit(number);
   }

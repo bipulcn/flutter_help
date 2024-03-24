@@ -23,30 +23,39 @@ class _ListOneState extends State<ListOne> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: ListView.builder(
-            padding: const EdgeInsets.all(8),
-            itemCount: categories.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Container(
-                color: Colors.amber[colorCodes[index]],
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Column(
-                    children: [
-                      Text(
-                        categories[index].name,
-                        style: TextStyle(color: color[index], fontSize: 24),
-                      ),
-                      const Text(
-                        "Hello world",
-                        style: TextStyle(fontSize: 20, color: Colors.black38),
-                      ),
-                    ],
+    return Scaffold(
+      body: Center(
+          child: ListView.builder(
+              padding: const EdgeInsets.all(8),
+              itemCount: categories.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  color: Colors.amber[colorCodes[index]],
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Column(
+                      children: [
+                        Text(
+                          categories[index].name,
+                          style: TextStyle(color: color[index], fontSize: 24),
+                        ),
+                        const Text(
+                          "Hello world",
+                          style: TextStyle(fontSize: 20, color: Colors.black38),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              );
-            }));
+                );
+              })),
+      floatingActionButton:
+          Column(mainAxisAlignment: MainAxisAlignment.end, children: [
+        FloatingActionButton(
+          onPressed: () {},
+          child: const Icon(Icons.upcoming),
+        )
+      ]),
+    );
   }
 }
 
@@ -55,8 +64,8 @@ class Category {
   Category({required this.name});
 }
 
-List<Category> categories = [
-  Category(name: 'Electronics'),
-  Category(name: 'Fashions'),
-  Category(name: 'Home Appliances'),
-];
+// List<Category> categories = [
+//   Category(name: 'Electronics'),
+//   Category(name: 'Fashions'),
+//   Category(name: 'Home Appliances'),
+// ];

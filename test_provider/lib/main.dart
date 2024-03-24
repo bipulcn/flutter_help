@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:test_provider/firstpage.dart';
@@ -64,7 +63,10 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           title: Text(widget.title),
-          bottom: const TabBar(tabs: [
+        ),
+        bottomNavigationBar: Container(
+          color: Colors.purple.shade200,
+          child: const TabBar(tabs: [
             Tab(icon: Icon(Icons.directions_car)),
             Tab(icon: Icon(Icons.directions_bike))
           ]),

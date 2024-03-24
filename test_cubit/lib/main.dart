@@ -1,10 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test_cubit/lists/listfirstpage.dart';
+import 'package:test_cubit/lists/listsecondpage.dart';
+import 'package:test_cubit/lists/listthirdpage.dart';
 import 'package:test_cubit/movie/movie_cubit.dart';
 import 'package:test_cubit/movie/movie_page.dart';
 import 'package:test_cubit/movie/movie_repository.dart';
 import 'package:test_cubit/otherone/accesscube.dart';
+import 'package:test_cubit/otherone/thridpage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,10 +34,11 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 6,
       child: Scaffold(
           bottomNavigationBar: menu(),
           body: TabBarView(children: [
+            const Thirdpage(),
             BlocProvider<MoviesCubit>(
               create: (context) => MoviesCubit(
                 repository: MovieRepository(
@@ -43,7 +48,9 @@ class HomePage extends StatelessWidget {
               child: const MoviesPage(),
             ),
             const AccessCube(),
-            const Text("hello world"),
+            const ListFirstPage(),
+            const ListSecondPage(),
+            const ListThirdPage(),
           ])),
     );
   }
@@ -58,8 +65,11 @@ class HomePage extends StatelessWidget {
         indicatorPadding: EdgeInsets.all(5.0),
         indicatorColor: Colors.blue,
         tabs: [
-          Tab(icon: Icon(Icons.oil_barrel)),
+          Tab(icon: Icon(Icons.access_alarm)),
           Tab(icon: Icon(Icons.home)),
+          Tab(icon: Icon(Icons.account_tree)),
+          Tab(icon: Icon(Icons.vaccines)),
+          Tab(icon: Icon(Icons.ac_unit)),
           Tab(icon: Icon(Icons.settings)),
         ],
       ),
