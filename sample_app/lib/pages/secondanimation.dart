@@ -28,15 +28,10 @@ class _SecondAnimationState extends State<SecondAnimation>
       TweenSequenceItem(
           tween: Tween<double>(begin: 200.0, end: 100.0), weight: 1)
     ]).animate(_controller);
-
-    _controller.addListener(() {
-      setState(() {});
-    });
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _controller.dispose();
     super.dispose();
   }
