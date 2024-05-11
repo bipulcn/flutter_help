@@ -39,6 +39,7 @@ class HomePage extends StatelessWidget {
           bottomNavigationBar: menu(),
           body: TabBarView(children: [
             const Thirdpage(),
+            // Takes a [Create] function that is responsible for creating the [Bloc] or [Cubit] and a [child] which will have access to the instance via BlocProvider.of(context). It is used as a dependency injection (DI) widget so that a single instance of a [Bloc] or [Cubit] can be provided to multiple widgets within a subtree.
             BlocProvider<MoviesCubit>(
               create: (context) => MoviesCubit(
                 repository: MovieRepository(

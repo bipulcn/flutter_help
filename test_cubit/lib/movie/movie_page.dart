@@ -16,6 +16,7 @@ class _MoviesPageState extends State<MoviesPage> {
       appBar: AppBar(
         title: const Text('Trending Movies'),
       ),
+      // BlocBuilder are going to rebuild widgets depending on their state.
       body: BlocBuilder<MoviesCubit, MoviesState>(
         builder: (context, state) {
           if (state is LoadingState) {
