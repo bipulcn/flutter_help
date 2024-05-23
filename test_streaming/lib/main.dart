@@ -74,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
             const SizedBox(height: 40),
             FilledButton(
                 style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.green)),
+                    backgroundColor: WidgetStateProperty.all(Colors.green)),
                 onPressed: () {
                   var value1 = getRandomValues().listen((event) {
                     debugPrint(event.toString());

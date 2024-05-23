@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:test_data/database/dog_db.dart';
+import 'package:test_data/database/question_db.dart';
 
 class DatabaseService {
   Database? _database;
@@ -33,6 +33,7 @@ class DatabaseService {
   }
 
   Future<void> create(Database db, int version) async {
+    await QuestionDb().createTable(db);
     await DogDB().createTable(db);
   }
 }

@@ -9,8 +9,8 @@ class ListOne extends StatefulWidget {
 
 class _ListOneState extends State<ListOne> {
   List<Category> categories = [
-    Category(name: 'Electronics'),
     Category(name: 'Fashions'),
+    Category(name: 'Electronics'),
     Category(name: 'Home Appliances'),
   ];
   int selectedIndex = 0;
@@ -21,6 +21,12 @@ class _ListOneState extends State<ListOne> {
     Colors.black54,
     Colors.black54
   ];
+
+  void _shortByName() {
+    categories.sort((a, b) => a.name.compareTo(b.name));
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +57,9 @@ class _ListOneState extends State<ListOne> {
       floatingActionButton:
           Column(mainAxisAlignment: MainAxisAlignment.end, children: [
         FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            _shortByName();
+          },
           child: const Icon(Icons.upcoming),
         )
       ]),

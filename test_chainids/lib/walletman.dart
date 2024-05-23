@@ -30,10 +30,10 @@ class _WalletManState extends State<WalletMan> {
             children: [
               ElevatedButton(
                 style: ButtonStyle(
-                    shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                    shape: WidgetStateProperty.all(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5.0))),
                     backgroundColor:
-                        MaterialStateProperty.all(Colors.blueAccent)),
+                        WidgetStateProperty.all(Colors.blueAccent)),
                 onPressed: () async {
                   BlockData bdata = BlockData();
                   await bdata.creatAccount();
@@ -46,9 +46,9 @@ class _WalletManState extends State<WalletMan> {
               const SizedBox(width: 20),
               ElevatedButton(
                 style: ButtonStyle(
-                    shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                    shape: WidgetStateProperty.all(RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(5.0))),
-                    backgroundColor: MaterialStateProperty.all(
+                    backgroundColor: WidgetStateProperty.all(
                         const Color.fromARGB(255, 228, 135, 13))),
                 onPressed: () {
                   debugPrintStack();
@@ -67,7 +67,7 @@ class _WalletManState extends State<WalletMan> {
               TextButton(
                 style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all(Colors.lightBlueAccent)),
+                        WidgetStateProperty.all(Colors.lightBlueAccent)),
                 onPressed: () async {
                   debugPrintStack(maxFrames: 2, label: "helloworld");
                   BlockData bdata = BlockData();
@@ -81,7 +81,7 @@ class _WalletManState extends State<WalletMan> {
               TextButton(
                 style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all(Colors.lightBlueAccent)),
+                        WidgetStateProperty.all(Colors.lightBlueAccent)),
                 onPressed: () async {
                   BlockData bdata = BlockData();
                   double amt = await bdata.getBalace();
@@ -94,7 +94,7 @@ class _WalletManState extends State<WalletMan> {
           TextButton(
             style: ButtonStyle(
                 backgroundColor:
-                    MaterialStateProperty.all(Colors.lightBlueAccent)),
+                    WidgetStateProperty.all(Colors.lightBlueAccent)),
             onPressed: () async {
               // BlockData bdata = await BlockData();
               // await bdata.sendMoney();

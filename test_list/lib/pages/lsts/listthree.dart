@@ -39,6 +39,18 @@ class _ListThreeState extends State<ListThree> {
     });
   }
 
+  List<PersonInfo> pinfo = [];
+  void addToInfo() {
+    var r = Random();
+    const chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz';
+    String str =
+        List.generate(8, (index) => chars[r.nextInt(chars.length)]).join();
+    pinfo.add(PersonInfo('id4', str, "$str@gmail.com"));
+    print(pinfo.length);
+    print(pinfo[0].name);
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     // String objText =
@@ -53,11 +65,11 @@ class _ListThreeState extends State<ListThree> {
       body: ListView.builder(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
-        itemCount: userList.length,
+        itemCount: pinfo.length,
         itemBuilder: (BuildContext context, int index) => ListTile(
-          leading: Text(userList[index]['id']),
-          title: Text(userList[index]['name']),
-          subtitle: Text(userList[index]['email'].toString()),
+          leading: Text(pinfo[index].id),
+          title: Text(pinfo[index].name),
+          subtitle: Text(pinfo[index].email.toString()),
         ),
       ),
       floatingActionButton:
@@ -67,7 +79,8 @@ class _ListThreeState extends State<ListThree> {
         const SizedBox(height: 10),
         FloatingActionButton(
           onPressed: () {
-            addRandom();
+            // addRandom();
+            addToInfo();
           },
           child: const Icon(Icons.add),
         )
@@ -88,4 +101,11 @@ class _ListThreeState extends State<ListThree> {
       userList.add(obj);
     });
   }
+}
+
+class PersonInfo {
+  String id;
+  String name;
+  String email;
+  PersonInfo(this.id, this.name, this.email);
 }
